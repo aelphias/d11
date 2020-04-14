@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_elem.c                                   :+:      :+:    :+:   */
+/*   ft_list_push_params.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: io <io@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: aelphias <aelphias@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 20:25:01 by io                #+#    #+#             */
-/*   Updated: 2020/03/12 20:53:05 by io               ###   ########.fr       */
+/*   Created: 2020/03/24 22:03:46 by aelphias          #+#    #+#             */
+/*   Updated: 2020/04/14 21:32:59 by aelphias         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_list  *ft_create_elem(void *data)
+t_list *ft_list_push_params(int ac, char **av)
 {
-    t_list *tmp;
-    
-    tmp = (t_list *)malloc(sizeof(t_list));
-    tmp->data = data;
-    tmp->next = NULL;
-    return (tmp);
+    t_list *head = NULL;
+	t_list *tmp;
+	int i;
+
+	i = 1;
+	while (i < ac)
+	{
+		tmp = ft_create_elem(av[i]);
+		insert_at_head(&head, tmp);
+		i++;
+	}
+    return (head);
 }

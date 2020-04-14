@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_elem.c                                   :+:      :+:    :+:   */
+/*   ft_list_last.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: io <io@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: aelphias <aelphias@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 20:25:01 by io                #+#    #+#             */
-/*   Updated: 2020/03/12 20:53:05 by io               ###   ########.fr       */
+/*   Created: 2020/03/24 21:47:22 by aelphias          #+#    #+#             */
+/*   Updated: 2020/04/14 21:32:42 by aelphias         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_list  *ft_create_elem(void *data)
+t_list	*ft_list_last(t_list *begin_list)
 {
-    t_list *tmp;
+    t_list *result;
     
-    tmp = (t_list *)malloc(sizeof(t_list));
-    tmp->data = data;
-    tmp->next = NULL;
-    return (tmp);
+    result = begin_list;
+    while (result->next != NULL)
+        result = result->next;
+    return (result);    
 }
