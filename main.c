@@ -6,7 +6,7 @@
 /*   By: aelphias <aelphias@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:20:45 by io                #+#    #+#             */
-/*   Updated: 2020/04/12 19:06:34 by aelphias         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 20:10:19 by aelphias         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_list(t_list *head)
 {
-	while (head != NULL)
+	while (head)
 	{
 		printf("%d - ",(int)head->data);
 		head = head->next;
@@ -22,6 +22,12 @@ void	print_list(t_list *head)
 	printf("\n");
 }
 
+void	print_data(void *data)
+{
+	if (data)
+		printf("%d - ", (int)data);
+	printf("\n");
+}
 
 /* void	print_list_str(t_list *head)
 {
@@ -39,7 +45,6 @@ void	print_list(t_list *head)
 	node_to_insert->next = *head;
 	*head = node_to_insert;
 }
- 
 
  void	f(void *data)
  {
@@ -48,33 +53,30 @@ void	print_list(t_list *head)
 	tmp = (int)data;
 	tmp++;
 	data = (void *)tmp;
+	printf("inside f  %d", tmp);
  }
 
- void	data_changer(t_list *head)
+ int	int_cmp(void *src, void *ref)
  {
-	
-	 f(head->data) ;
+	if ((*( int* )src) == (*( int*)ref))
+	{
+		printf("{4}\n");
+		return (1);
+	}
+	else
+		return (-1);
  }
 
 int	main(void)
 {
 	t_list	*head;
 	int		i;
-	int tmp;
-	
-	void (*foo)(void*);
-	tmp = 0;
-	foo = &f;
-	i = 5;
+
+	i = 0;
 	head = NULL;
 	while (i < 8)
 		insert_at_head(&head, ft_create_elem((void *)i++));
-	printf("before:\n");
-	print_list(head);
-	//ft_list_foreach(head, foo);
-	data_changer(head);
-	printf("after:\n");
-	//printf("%d\n",(int)head->data);
-	print_list(head);
+	ft_list_foreach(head, print_data);
+	ft_list_foreach_if(head, print_data, (void *)3, int_cmp);
  	return (0);
 }
